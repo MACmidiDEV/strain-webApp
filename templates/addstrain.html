@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <h3>Add Strain</h3>
+
 <div class="row">
     <form action="" method="POST" class="col s12">
         <div class="row">
@@ -8,8 +9,8 @@
                     <i class="material-icons prefix">poll</i>
                     <select id="strain" name="strain_name">
                   <option value="" disabled selected>Choose strain type</option>
-                  {% for strain in strains %}
-                      <option value="{{strain.type}}">{{strain.type}}</option>
+                  {% for strainx in strains %}
+                      <option value="{{strainx.type}}">{{strainx.type}}</option>
                   {% endfor %}
                 </select>
                     <label>Strain type</label>
