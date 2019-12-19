@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<hr>
+<h1>Strains</h1>
+
+
+    <ul class="collapsible popout">
+        {% for strain in strains %}
+        <li>
+            <div class="collapsible-header"><i class="material-icons">eco</i><strong>{{strain.name}}</strong><br>{{strain.type}}</div>
+            <div class="collapsible-body"><span>{{strain.description}}</span></div>
+        </li>
+        {% endfor %}
+    </ul>
+
+
+<hr>
+    {% for strain in strains %}
+<hr>    
+    <h1>
+        {{strain.name}}
+    </h1>
+        {{strain.type}}
+        {{strain.description}}   
+        {{strain.isDank}}
+        {{strain.rank}}
+    {% endfor %}
+
+    
+{%endblock%}    
+
