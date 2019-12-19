@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
-
+<!-- TODO get this to WORK -->
 <head>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" -->
+    <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <style>
@@ -14,23 +20,175 @@
         .collapsible-header{
             background-color: beige;
         }
+        body{
+          background-color: chartreuse;
+        }
     </style>
 </head>
 
 <body>
-    <hr>    
+    <!-- <hr>    
     <a href="/add_strain">addStrain</a>
     <hr> 
     <a href="/">HOME</a>
     <hr>     
+
+
     <h1>_______myStrains.com</h1>
     {% block content %}
-    {% endblock %}
+    {% endblock %} -->
     
-
+  <div class="container text-center">    
+    <div class="row">
+      <div class="col-sm-3 well">
+        <div class="well">
+          <p><a href="#">Strain</a></p>
+          <img src="" class="img-circle" height="65" width="65" alt="   strain">
+          
+        </div>
+        <div class="well">
+          <p><a href="#">Systoms</a></p>
+          <p>
+            <span class="label label-default">Sleep</span>
+            <span class="label label-primary">Creativity</span>
+            <span class="label label-success">Anxiety</span>
+            <span class="label label-info">Pain</span>
+            <span class="label label-warning">Depression</span>
+            <span class="label label-danger">Appite</span>
+          </p>
+        </div>
+        <div class="alert alert-success fade in">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+          <p><strong>Explore!</strong></p>
+          Find what works for you
+        </div>
+        <p><a href="#">Hybrid</a></p>
+        <p><a href="#">Indca</a></p>
+        <p><a href="#">Sativa</a></p>
+      </div>
+      <div class="col-sm-7">
+      
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default text-left">
+              <div class="panel-body">
+                <form class="form" role="search">
+                  <div class="form-group input-group">
+                    <input type="text" class="form-control" placeholder="Search.. Strains">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                    </span>        
+                  </div>
+                </form>
+           
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default text-left">
+              <div class="panel-body">
+  
+                  <h1>myStrains.com</h1>
+                
+                  <hr>
+      <h1 style="text-align: center;">Strains</h1>
+  <hr>
+      {% for strain in strains %}
+  <hr>    
+      <h1>
+          {{strain.name}}
+      </h1>
+          {{strain.type}}
+          {{strain.description}}   
+          {{strain.isDank}}
+          {{strain.rank}}
+      {% endfor %}
+  <hr>    
+  <hr>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="well">
+             <p>Bo</p>
+             <img src="" class="img-circle" height="55" width="55" alt="Avatar">
+             
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <div class="well">
+              <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="well">
+             <p>Jane</p>
+             
+             <img src="" class="img-circle" height="55" width="55" alt="Avatar">
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <div class="well">
+              <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="well">
+             <p>Anja</p>
+             <img src="" class="img-circle" height="55" width="55" alt="Avatar">
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <div class="well">
+              <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+            </div>
+          </div>
+        </div>     
+      </div>
+      <div class="col-sm-2 well">
+        <div class="thumbnail">
+          <p>Upcoming Events:</p>
+          <img src="" alt="Canna" width="400" height="300">
+          <p><strong>Events</strong></p>
+          <p>Fri. 27 November 2015</p>
+          <button class="btn btn-primary">Info</button>
+        </div>      
+        <div class="well">
+          <p>info</p>
+        </div>
+        <div class="well">
+          <p>info</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="container-fluid text-center">
+    <p>Miguel Camacho</p>
+  </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+crossorigin="anonymous"></script>
 
     <script>
 

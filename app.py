@@ -16,7 +16,7 @@ def get_strains():
 
 @app.route('/add_strain')
 def add_strain():    
-    return render_template('addstrain.html')
+    return render_template('addstrain.html', strains=mongo.db.strains.find())
 
 
 if __name__ == '__main__':

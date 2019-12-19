@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <style>
+        html{
+            background-color: rgb(80, 117, 85);
+        }
+        .collapsible-body{
+            background-color: rgba(211, 211, 105, 0.304);
+        }
+        .collapsible-header{
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <hr>    
+    <a href="/add_strain">addStrain</a>
+    <hr> 
+    <a href="/">HOME</a>
+    <hr>     
+    <h1>_______myStrains.com</h1>
+    {% block content %}
+    {% endblock %}
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems, options);
+        });
+
+        // initCollapse.
+        $(document).ready(function () {
+            $('.collapsible').collapsible();
+            $('select').material_select();
+        });
+
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: false // Close upon selecting a date,
+        });
+
+        document.getElementById("matfix").addEventListener("click", function(e) {
+	    e.stopPropagation();
+        });
+    </script>
+
+</body>
+
+</html>
