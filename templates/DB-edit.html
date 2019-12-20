@@ -1,0 +1,77 @@
+{% extends 'DB.html' %} {% block content %}
+
+<h3>Edit Strain</h3>
+<div class="row">
+
+
+    <form action="{{ url_for('update_DB', strain_id=strain._id) }}" method="POST" class="col s12">
+    <!-- <form action="{{ url_for('insert_DB')}}" method="POST" class="col s12"> -->
+        <div class="row">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">poll</i>
+                    <select class="collapsible"id="strain_type" name="type">                        
+                  <option value="" disabled selected>Choose strain type</option>
+                  {% for strn in strains %}
+                    {% if strn.type == strain.type %}
+                      <option value="{{strain.type}}" selected >{{strain.type}}</option>
+                    {% else %}  
+                      <option value="{{strain.type}}">{{strain.type}}</option>
+                   {% endif %} 
+                  {% endfor %}
+                </select>
+                    <label>Strain type</label>
+                </div>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">assignment</i>
+                <input id="strain_name" name="name" type="text" class="validate" value="{{strain.name}}">
+                <label for="icon_prefix">Strain Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">subject</i>
+                <textarea id="strain_description" name="description" class="materialize-textarea"></textarea>                                                        
+                <label for="icon_telephone">Strain Description</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">today</i>
+                <input id="firstTried" name="firstTried" type="text" class="datepicker">
+                <label for="icon_prefix">First found</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="switch">
+                <label>
+                  {% if strain.isDank %}
+                        <input id="isDank" name="isDank" type="checkbox">
+                    {% else %}  
+                        <input id="isDank" name="isDank">
+                  {% endif %}
+                  <span class="lever"></span>
+                  Is Dank
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-large waves-effect waves-light red" type="submit" name="action">Edit Strain
+                <i class="material-icons left">eco</i>
+                <i class="material-icons right">send</i>
+              </button>
+        </div>        
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        due_date = Date.parse('{{strain.firstTried}}')
+        $('#firstTried').pickdate('picker').set('select', firstTried, {format: 'dd/mm/yyyy'}).trigger('change')
+    })
+</script>
+
+{% endblock %}

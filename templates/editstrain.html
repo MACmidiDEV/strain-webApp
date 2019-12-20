@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<h3>Add Strain</h3>
+<h3>Edit Strain</h3>
 
 <div class="row">
     <form action="{{url_for('insert_strain')}}" method="POST" class="col s12">
@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">poll</i>
-                    <select class="collapsible"id="type" name="type_name">
+                    <select class="collapsible"id="strain" name="strain_name">
                   <option value="" disabled selected>Choose strain type</option>
                   {% for strain in strains %}
                       <option value="{{strain.type}}">{{strain.type}}</option>

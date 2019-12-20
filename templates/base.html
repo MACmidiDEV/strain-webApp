@@ -8,44 +8,47 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
   integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> 
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
     <style>
         html{
-            background-color: rgb(80, 117, 85);
+            /* background-color: rgb(80, 117, 85); */
         }
         .collapsible-body{
-            background-color: rgba(211, 211, 105, 0.304);
+            /* background-color: rgba(211, 211, 105, 0.304); */
         }
         .collapsible-header{
             background-color: beige;
         }
         body{
-          background-color: chartreuse;
+          /* background-color: chartreuse; */
+          background-color: beige;
+          padding-top: 2%;
+        }
+        strong{
+          font-size: large;
+        }
+        #panel-body-strain{
+          background-color: rgb(183, 217, 150);
         }
     </style>
 </head>
 
-<body>
-    <hr>    
-    <a href="/add_strain">addStrain</a>
-    <hr> 
-    <a href="/">HOME</a>
-    <hr>     
-
-
-  
+<body>   
     
-  <div class="container text-center">    
+  <div class="container">    
     <div class="row">
       <div class="col-sm-3 well">
         <div class="well">
-          <p><a href="#">Strain</a></p>
-          <img src="" class="img-circle" height="65" width="65" alt="   strain">
+          <p><a href="/DB">Strain DataBase</a></p>
+          <!-- <img src="Cana.jpeg" class="img-circle imgg" height="255" width="255" alt="View StrainDB"> -->
           
         </div>
         <div class="well">
-          <p><a href="#">Systoms</a></p>
+          <p>Strains for everything</p>
           <p>
             <span class="label label-default">Sleep</span>
             <span class="label label-primary">Creativity</span>
@@ -60,6 +63,7 @@
           <p><strong>Explore!</strong></p>
           Find what works for you
         </div>
+        <p><a href="/">ALL</a></p>
         <p><a href="#">Hybrid</a></p>
         <p><a href="#">Indca</a></p>
         <p><a href="#">Sativa</a></p>
@@ -89,33 +93,31 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="panel panel-default text-left">
-              <div class="panel-body">
-  
-                  <h1>myStrains.com</h1>
-                <hr>
+              <div class="panel-body" id="panel-body-strain">
+                
+                {% block content %}
+                {% endblock %}
+
+
+                
+                
+                  <!-- <h1>myStrains.com</h1> -->
+                
                 <ul class="collapsible popout">
                   {% for strain in strains %}
                   <li>
-                      <div class="collapsible-header"><i class="material-icons">eco</i><strong>{{strain.name}}</strong><br>{{strain.type}}</div>
+                      <div class="collapsible-header">
+                          <i class="material-icons">eco</i><strong>{{strain.name}}</strong>
+                          <span>
+                            <p>{{strain.type}}</p>
+                          </div>
+                      </div>
                       <div class="collapsible-body"><span>{{strain.description}}</span></div>
                   </li>
                   {% endfor %}
               </ul>
-                  <hr>
-      <h1 style="text-align: center;">Strains</h1>
-  <hr>
-      {% for strain in strains %}
-  <hr>    
-      <h1>
-          {{strain.name}}
-      </h1>
-          {{strain.type}}
-          {{strain.description}}   
-          {{strain.isDank}}
-          {{strain.rank}}
-      {% endfor %}
-  <hr>    
-  <hr>
+                  <!-- <hr> -->
+
   
               </div>
             </div>
@@ -178,6 +180,7 @@ crossorigin="anonymous"></script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.collapsible');
             var instances = M.Collapsible.init(elems, options);
+            
         });
 
         // initCollapse.
@@ -196,7 +199,7 @@ crossorigin="anonymous"></script>
         });
 
         document.getElementById("matfix").addEventListener("click", function(e) {
-	    e.stopPropagation();
+	          e.stopPropagation();
         });
     </script>
 

@@ -1,31 +1,31 @@
-{% extends 'base.html' %} {% block content %}
-<h3>Add Strain</h3>
+{% extends 'DB.html' %} {% block content %}
+<h1 style="text-align: center;">Add Strains</h1>
 
 <div class="row">
-    <form action="{{url_for('insert_strain')}}" method="POST" class="col s12">
+    <form action="{{url_for('insert_DB')}}" method="POST" class="col s12">
         <div class="row">
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">poll</i>
-                    <select class="collapsible"id="type" name="type_name">
-                  <option value="" disabled selected>Choose strain type</option>
-                  {% for strain in strains %}
-                      <option value="{{strain.type}}">{{strain.type}}</option>
-                  {% endfor %}
-                </select>
+                    <select class="collapsible" id="strain_type" name="type">
+                        <option value="" disabled selected>Choose strain type</option>
+                        {% for strain in strains %}
+                        <option value="{{strain.type}}">{{strain.type}}</option>
+                        {% endfor %}
+                    </select>
                     <label>Strain type</label>
                 </div>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">assignment</i>
-                <input id="strain_name" name="strain_name" type="text" class="validate">
+                <input id="strain_name" name="name" type="text" class="validate">
                 <label for="icon_prefix">Strain Name</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">subject</i>
-                <textarea name="strain_description" id="strain_description" class="materialize-textarea"></textarea>
+                <textarea name="description" id="strain_description" class="materialize-textarea"></textarea>
                 <label for="icon_telephone">Strain Description</label>
             </div>
         </div>
@@ -39,18 +39,18 @@
         <div class="row">
             <div class="switch">
                 <label>
-                  <input id="is_dank" name="is_dank" type="checkbox">
-                  <span class="lever"></span>
-                  Is Dank
+                    <input id="button_isDank" name="isDank" type="checkbox">
+                    <span class="lever"></span>
+                    Is Dank
                 </label>
             </div>
         </div>
         <div class="row">
-            <button class="btn btn-large waves-effect waves-light red" type="submit" name="action">Add Strain
-                <i class="material-icons left">eco</i>
-                <i class="material-icons right">send</i>
-              </button>
-        </div>        
+            <button class="btn btn-large waves-effect waves-light red" type="submit">Add Strain
+                <i class="material-icons right">eco</i>
+                <i class="material-icons left">playlist_add</i>
+            </button>                
+        </div>
     </form>
 </div>
 

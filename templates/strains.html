@@ -1,18 +1,43 @@
 {%extends 'base.html'%}
 
 {%block content%}
+
+
+<p><a href="add_strain">Add Strain</a></p>
+<h1 style="text-align: center;">Strains</h1>
 <hr>
-<h1>Strains</h1>
+<!-- <h1>Strains</h1> -->
 
 
-    <ul class="collapsible popout">
-        {% for strain in strains %}
-        <li>
-            <div class="collapsible-header"><i class="material-icons">eco</i><strong>{{strain.name}}</strong><br>{{strain.type}}</div>
-            <div class="collapsible-body"><span>{{strain.description}}</span></div>
-        </li>
-        {% endfor %}
-    </ul>
+<ul class="collapsible popout">
+    {% for strain in strains %}
+    <li>
+        <div class="collapsible-header">
+            <div class="col s3">
+                <i class="material-icons">expand_more</i>                
+            </div>
+            <div class="col s9">
+
+                <i class="material-icons green circle">eco</i>
+                <strong style="font-size: x-large;">{{strain.name}}</strong>{{strain.type}}
+            </div>
+        </div>
+
+        <div class="collapsible-body">
+            <div class="row">
+                <div style="width: 25%;" class="col 4">
+                    <a href="" class="waves-effect waves-light btn red">Delete</a>
+                    <a href="{{url_for('edit_strain' , strain_id = strain._id )}}" class="waves-effect waves-light btn green btn_small">Edit</a>
+                </div>
+            
+                <div style="width: 75%;" class="col 8">
+                    <span>{{strain.description}}</span>
+                </div>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
 
 
 

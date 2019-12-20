@@ -4,29 +4,34 @@
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <style>
         html{
-            background-color: rgb(80, 117, 85);
+            /* background-color: rgb(80, 117, 85); */
         }
         .collapsible-body{
-            background-color: rgba(211, 211, 105, 0.304);
+            /* background-color: rgba(211, 211, 105, 0.304); */
         }
         .collapsible-header{
-            background-color: beige;
+            /* background-color: beige; */
         }
     </style>
 </head>
 
 <body>
+    <li>
     <hr>    
-    <a href="/add_strain">addStrain</a>
-    <hr> 
-    <a href="/">HOME</a>
+        <a class="show" href="/DB">[|]_____HOME_____[|]</a>
+        <a class="show" href="/add_DB">[|]_____addStrain_____[|]</a>
+        <a class="show" href="/">[|]_____viewApp_____[|]</a>
+    </li>    
     <hr>     
-    <h1>_______myStrains.com</h1>
-    {% block content %}
-    {% endblock %}
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>   
     
+    <hr>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
