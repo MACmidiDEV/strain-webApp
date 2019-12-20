@@ -12,7 +12,7 @@
                     <i class="material-icons prefix">poll</i>
                     <select class="collapsible"id="strain_type" name="type">                        
                   <option value="" disabled selected>Choose strain type</option>
-                  {% for strn in strains %}
+                  {% for strn in type %}
                     {% if strn.type == strain.type %}
                       <option value="{{strain.type}}" selected >{{strain.type}}</option>
                     {% else %}  

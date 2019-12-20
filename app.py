@@ -59,10 +59,10 @@ def update_DB(strain_id):
     strains.update( {'_id': ObjectId(strain_id)},
     {
         'strain_name':request.form.get('name'),
-        'category_name':request.form.get('type'),
-        'task_description': request.form.get('description'),
-        'due_date': request.form.get('firstTried'),
-        'is_urgent':request.form.get('isDank')
+        'strain_type':request.form.get('type'),
+        'strain_description': request.form.get('description'),
+        'firstTried': request.form.get('firstTried'),
+        'isDank':request.form.get('isDank')
     })
     return redirect(url_for('get_DB'))    
 
