@@ -14,8 +14,8 @@
                 <div class="col s9">
                     
                     <div class="inline_actions">
-                        <i class="material-icons green circle">eco</i>
-                        <strong style="font-size: x-large;">{{strain.name}}</strong>{{strain.type}}
+                        <i style="font-size: 116px;width: 90px;"class="material-icons green circle">eco</i>
+                        <strong style="font-size: 40px;letter-spacing: .5em;">{{strain.name}}</strong>{{strain.type}}
                     </div>
                 </div>
             </div>
@@ -23,18 +23,24 @@
             <div class="collapsible-body">
                 <div class="row">
                     <!-- <div style="width: 20%;" class="col s4"></div> -->
-                    <div style="width: 20%;font-size: 0;" class="col s4">
-                        <a href="" class="waves-effect waves-light btn red btn_small">Delete</a>                        
-                        <a  href =  "{{url_for('edit_DB', strain_id=strain._id)}}" class="waves-effect waves-light btn green btn_small">Edit</a>
-                        
+                    <a href="" class="waves-effect waves-light btn red btn_small">View</a>                        
+                    <div style="width: 20%;" class="col s4">
+                        <span>{{strain.firstTried}}</span>
+                        <a href="" class="waves-effect waves-light btn red btn_small">Rank</a>                        
+                        <a href = "{{url_for('edit_DB', strain_id=strain._id)}}" class="waves-effect waves-light btn green btn_small">Edit</a>
                     </div>
                 
                     <div style="width: 80%;" class="col s8">
-                        <span>{{strain.isDank}}</span>
+                        <span>{{strain.isDank}}</span>                        
                         <span>{{strain.description}}</span>
                     </div>
                 </div>
             </div>
+        
+            <a href = "" style="width: 32%;" class="waves-effect waves-light btn green btn_small">Rank</a>      
+            <a href = "" style="width: 32%;" class="waves-effect waves-light btn green btn_small">View</a>      
+            <a href = "{{url_for('delete_DB', strain_id=strain._id)}}" style="width: 32%;" class="waves-effect waves-light btn green btn_small">Delete</a>      
+        
         </li>
         {% endfor %}
     </ul>
@@ -42,6 +48,8 @@
 
 
 
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
     
 {%endblock%}    
 

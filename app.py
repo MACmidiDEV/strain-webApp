@@ -32,6 +32,24 @@ def edit_strain(strain_id):
     all_types = mongo.db.type.find()
     return render_template('editstrain.html', strain=the_strain, type=all_types)
 
+@app.route('/update_strain/<strain_id>', methods=["POST"])
+def update_strain(strain_id):
+    strains = mongo.db.strains
+    strains.update( {'_id': ObjectId(strain_id)},
+    {
+        'name':request.form.get('name'),
+        'type':request.form.get('type'),
+        'description': request.form.get('description'),
+        'firstTried': request.form.get('firstTried'),
+        'isDank':request.form.get('isDank')
+    })
+    return redirect(url_for('get_strains'))       
+
+@app.route('/delete_strain/<strain_id>')
+def delete_strain(strain_id):
+    mongo.db.strains.delete_one({'_id': ObjectId(strain_id)})
+    return redirect(url_for('get_strains'))        
+
 @app.route('/DB')
 def get_DB():
     return render_template("DB-all.html", strains=mongo.db.strains.find())
@@ -58,12 +76,17 @@ def update_DB(strain_id):
     strains = mongo.db.strains
     strains.update( {'_id': ObjectId(strain_id)},
     {
-        'strain_name':request.form.get('name'),
-        'strain_type':request.form.get('type'),
-        'strain_description': request.form.get('description'),
+        'name':request.form.get('name'),
+        'type':request.form.get('type'),
+        'description': request.form.get('description'),
         'firstTried': request.form.get('firstTried'),
         'isDank':request.form.get('isDank')
     })
+    return redirect(url_for('get_DB'))    
+
+@app.route('/delete_DB/<strain_id>')
+def delete_DB(strain_id):
+    mongo.db.strains.remove({'_id': ObjectId(strain_id)})
     return redirect(url_for('get_DB'))    
 
       
