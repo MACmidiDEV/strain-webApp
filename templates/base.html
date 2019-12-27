@@ -1,51 +1,92 @@
 <!DOCTYPE html>
 <html>
 <!-- TODO get this to WORK -->
+
 <head>
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" -->
-    <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" -->
+  <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
-  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 
-    <style>
-        html{
-            /* background-color: rgb(80, 117, 85); */
-        }
-        .collapsible-body{
-            /* background-color: rgba(211, 211, 105, 0.304); */
-        }
-        .collapsible-header{
-            background-color: beige;
-        }
-        body{
-          /* background-color: chartreuse; */
-          background-color: beige;
-          padding-top: 2%;
-        }
-        strong{
-          font-size: large;
-        }
-        #panel-body-strain{
-          background-color: rgb(183, 217, 150);
-        }
-    </style>
+  <style>
+    
+    .collapsible-header {
+      background-color: beige;
+    }
+
+    body {
+      background-color: beige;
+    }
+
+    strong {
+      font-size: large;
+    }
+
+    #panel-body-strain {
+      background-color: rgb(183, 217, 150);
+    }
+  </style>
 </head>
 
-<body>   
+<body>
+
+
+  <header>
     
-  <div class="container">    
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo"><i class="material-icons">eco</i>Strains App</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li>
+            <form>
+              <div class="input-field">
+                <input id="myInput" type="search">
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </li>
+          <li><a href="/DB">Strains DB</a></li>
+          <li><a href="/add_strain">Add Strain</a></li>
+          <li><a href="/get_ranks">Rank</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="/DB">Strains DB</a></li>
+          <li><a href="/add_strain">Add Strain</a></li>
+          <li><a href="/get_ranks">Rank</a></li>
+        </ul>
+      </div>
+    </nav>
+  
+  </header>
+
+  <div class="container">
     <div class="row">
       <div class="col-sm-3 well">
         <div class="well">
-          <p><a href="/DB">Strain DataBase</a></p>
-          <!-- <img src="Cana.jpeg" class="img-circle imgg" height="255" width="255" alt="View StrainDB"> -->
-          
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="/static/zCana.jpeg">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">RandomStrain<i
+                  class="material-icons right">eco</i></span>
+              <p><a href="#">INFO on strain</a></p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Strain.name<i
+                  class="material-icons right">close</i></span>
+              <p>strain.description</p>
+            </div>
+          </div>
+
         </div>
         <div class="well">
           <p>Strains for everything</p>
@@ -77,145 +118,102 @@
           <p><strong>Explore!</strong></p>
           Find what works for you
         </div>
-        <p><a href="/">ALL</a></p>
-        <p><a href="#">Hybrid</a></p>
-        <p><a href="#">Indca</a></p>
-        <p><a href="#">Sativa</a></p>
-      </div>
-      <div class="col-sm-7">
-      
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default text-left">
-              <div class="panel-body">
-                <form class="form" role="search">
-                  <div class="form-group input-group">
-                    <input type="text" class="form-control" placeholder="Search.. Strains">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">
-                        <span class="glyphicon glyphicon-search"></span>
-                      </button>
-                    </span>        
-                  </div>
-                </form>
-           
-              </div>
-            </div>
-          </div>
+
+        <div id="myBtnContainer">
+          <a href="/" class="alert alert-success fade in"> Show all</a>
+          <button class="alert alert-success fade in"> Hybrid</button>
+          <button class="alert alert-success fade in"> Indica</button>
+          <button class="alert alert-success fade in"> Sativa</button>
+
         </div>
-        
+      </div>
+      <div class="col-sm-9">
         <div class="row">
           <div class="col-sm-12">
             <div class="panel panel-default text-left">
               <div class="panel-body" id="panel-body-strain">
-                
                 {% block content %}
                 {% endblock %}
-
-
-                
-                
-                  <!-- <h1>myStrains.com</h1> -->
-                
                 <ul class="collapsible popout">
                   {% for strain in strains %}
                   <li>
-                      <div class="collapsible-header">
-                          <i class="material-icons">eco</i><strong>{{strain.name}}</strong>
-                          <span>
-                            <p>{{strain.type}}</p>
-                          </div>
-                      </div>
-                      <div class="collapsible-body"><span>{{strain.description}}</span></div>
-                  </li>
-                  {% endfor %}
-              </ul>
-                  <!-- <hr> -->
-
-  
+                    <div class="collapsible-header">
+                      <i class="material-icons">eco</i><strong>{{strain.name}}</strong>
+                      <span>
+                        <p>{{strain.type}}</p>
+                    </div>
+                    <div class="collapsible-body"><span>{{strain.effects}}</span></div>
+                    <div class="collapsible-body"><span>{{strain.medical}}</span></div>
               </div>
+              <div class="collapsible-body"><span>{{strain.description}}</span></div>
+              </li>
+              {% endfor %}
+              </ul>
             </div>
           </div>
         </div>
 
+      </div>
 
-      
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="well">
-             <p>Bo</p>
-             <img src="" class="img-circle" height="55" width="55" alt="Avatar">
-             
-            </div>
-          </div>
-          <div class="col-sm-9">
-            <div class="well">
-              <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-            </div>
-          </div>
-        </div>
-        
-      
-      </div>
-      <div class="col-sm-2 well">
-        <div class="thumbnail">
-          <p>Upcoming Events:</p>
-          <img src="" alt="Canna" width="400" height="300">
-          <p><strong>Events</strong></p>
-          <p>Fri. 27 November 2015</p>
-          <button class="btn btn-primary">Info</button>
-        </div>      
-        <div class="well">
-          <p>info</p>
-        </div>
-        <div class="well">
-          <p>info</p>
-        </div>
-      </div>
     </div>
+
   </div>
-  
+
+
   <footer class="container-fluid text-center">
     <p>Miguel Camacho</p>
   </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 
-    <script>
+  <script>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.collapsible');
-            var instances = M.Collapsible.init(elems, options);
-            
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.collapsible');
+      var instances = M.Collapsible.init(elems, options);
+
+      var elem = document.querySelectorAll('.modal');
+      var instance = M.Modal.init(elem, options);
+
+    });
+
+    // initCollapse.
+    $(document).ready(function () {
+      $('.collapsible').collapsible();
+      $('select').material_select();
+      $(".button-collapse").sideNav();
+
+      $("#myInput").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#inline_actions *").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
+      });
+    });
 
-        // initCollapse.
-        $(document).ready(function () {
-            $('.collapsible').collapsible();
-            $('select').material_select();
-        });
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15, // Creates a dropdown of 15 years to control year,
+      today: 'Today',
+      clear: 'Clear',
+      close: 'Ok',
+      closeOnSelect: false // Close upon selecting a date,
+    });
 
-        $('.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15, // Creates a dropdown of 15 years to control year,
-            today: 'Today',
-            clear: 'Clear',
-            close: 'Ok',
-            closeOnSelect: false // Close upon selecting a date,
-        });
-
-        document.getElementById("matfix").addEventListener("click", function(e) {
-	          e.stopPropagation();
-        });
-    </script>
+    document.getElementById("matfix").addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+  </script>
 
 </body>
 

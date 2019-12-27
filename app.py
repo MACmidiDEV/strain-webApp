@@ -5,8 +5,10 @@ from bson.objectid import ObjectId
 
 
 app = Flask(__name__)
-app.config["MONGO_DBNAME"] = 'strainAPI'
-app.config["MONGO_URI"] = "mongodb+srv://root:r00tUser@strainapicluster-euclv.mongodb.net/strainAPI?retryWrites=true&w=majority"
+app.config["MONGO_DBNAME"
+    ] = 'strainAPI'
+app.config["MONGO_URI"
+    ] = "mongodb+srv://root:r00tUser@strainapicluster-euclv.mongodb.net/strainAPI?retryWrites=true&w=majority"
 
 mongo = PyMongo(app)
 
@@ -27,8 +29,7 @@ def insert_strain():
 
 @app.route('/edit_strain/<strain_id>')
 def edit_strain(strain_id):
-    the_strain = mongo.db.strains.find_one({"_id": ObjectId(strain_id)})
-    # all_types = mongo.db.strains.find()
+    the_strain = mongo.db.strains.find_one({"_id": ObjectId(strain_id)}) 
     all_types = mongo.db.type.find()
     return render_template('editstrain.html', strain=the_strain, type=all_types)
 
@@ -39,9 +40,12 @@ def update_strain(strain_id):
     {
         'name':request.form.get('name'),
         'type':request.form.get('type'),
+        'effects':request.form.get('effects'),
+        'medical':request.form.get('medical'),
         'description': request.form.get('description'),
         'firstTried': request.form.get('firstTried'),
-        'isDank':request.form.get('isDank')
+        'isDank':request.form.get('isDank'),
+        'rankfire':request.form.get('rankfire')
     })
     return redirect(url_for('get_strains'))       
 
@@ -49,6 +53,27 @@ def update_strain(strain_id):
 def delete_strain(strain_id):
     mongo.db.strains.delete_one({'_id': ObjectId(strain_id)})
     return redirect(url_for('get_strains'))        
+
+@app.route('/get_ranks')
+def get_ranks():
+    return render_template("ranks.html", rankfire=mongo.db.rankfire.find()) 
+
+@app.route('/edit_rank/<strain_id>')
+def edit_rank(strain_id):
+    return render_template('editstrain.html',
+                           strain=mongo.db.rankfire.find_one(
+                           {'_id': ObjectId(strain_id)}))
+
+
+@app.route('/update_rank/<strain_id>', methods=['POST'])
+def update_rank(strain_id):
+    mongo.db.rankfire.update(
+        {'_id': ObjectId(strain_id)},
+        {'rankfire': request.form.get('rankfire')})
+    return redirect(url_for('get_ranks'))    
+
+
+
 
 @app.route('/DB')
 def get_DB():
@@ -78,9 +103,12 @@ def update_DB(strain_id):
     {
         'name':request.form.get('name'),
         'type':request.form.get('type'),
+        'effects':request.form.get('effects'),
+        'medical':request.form.get('medical'),
         'description': request.form.get('description'),
         'firstTried': request.form.get('firstTried'),
-        'isDank':request.form.get('isDank')
+        'isDank':request.form.get('isDank'),
+        'rankfire':request.form.get('rankfire')
     })
     return redirect(url_for('get_DB'))    
 
@@ -89,6 +117,24 @@ def delete_DB(strain_id):
     mongo.db.strains.remove({'_id': ObjectId(strain_id)})
     return redirect(url_for('get_DB'))    
 
+@app.route('/RanksDB')
+def RanksDB():
+    return render_template('RanksDB.html',
+                           rankfire=mongo.db.fire.find())   
+
+@app.route('/edit_RanksDB/<rankfire_id>')
+def edit_RanksDB(rankfire_id):
+    return render_template('EditRanksDB.html',
+                           rankfire=mongo.db.rankfire.find_one(
+                           {'_id': ObjectId(rankfire_id)}))      
+
+
+@app.route('/update_RanksDB/<rankfire_id>', methods=['POST'])
+def update_RanksDB(rankfire_id):
+    mongo.db.rankfire.update(
+        {'_id': ObjectId(rankfire_id)},
+        {'rankfire': request.form.get('rankfire_fire')})
+    return redirect(url_for('RanksDB'))  
       
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

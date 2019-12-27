@@ -6,43 +6,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <style>
-        html{
+        html {
+            /* background-color: rgb(80, 117, 85); */
+            /* width: 98%; */
+            /* margin-left: 5%; */
+        }
+
+        body {
             /* background-color: rgb(80, 117, 85); */
             width: 100%;
         }
-        body{
-            /* background-color: rgb(80, 117, 85); */
-            width: 100%;
+
+        .container {
+            /* width: 96%; */
         }
-        .container{
-            width: 96%;
-        }
-        .collapsible-body{
+
+        .collapsible-body {
             /* background-color: rgba(211, 211, 105, 0.304); */
         }
-        .collapsible-header{
+
+        .collapsible-header {
             /* background-color: beige; */
         }
     </style>
 </head>
 
+<header>
+
+  
+    <nav>
+        <div class="nav-wrapper ">
+            <a href="/DB" class="brand-logo"><i class="material-icons">eco</i>Strains DB</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse">
+                <i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <form>
+                        <div class="input-field">
+                            <input id="myInput" type="search">
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </li>
+                <li><a href="/">Strains App</a></li>                
+                <li><a href="/add_DB">Add Strain</a></li>
+                <li><a href="/RanksDB">Rank</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="/">Strains App</a></li>                
+                <li><a href="/add_DB">Add Strain</a></li>
+                <li><a href="/RanksDB">Rank</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
 <body>
-    <li>
-    <hr>    
-        <a class="show" href="/DB">[|]_____HOME_____[|]</a>
-        <a class="show" href="/add_DB">[|]_____addStrain_____[|]</a>
-        <a class="show" href="/">[|]_____viewApp_____[|]</a>
-    </li>    
-    <hr>     
-    <div class="container">
+
+
+    <div class="container" id="DBmain">
         {% block content %}
         {% endblock %}
-    </div>   
-    
-    <hr>
+    </div>
+
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/mark.js/7.0.0/jquery.mark.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     <script>
@@ -56,6 +88,20 @@
         $(document).ready(function () {
             $('.collapsible').collapsible();
             $('select').material_select();
+            $(".button-collapse").sideNav();
+
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#inline_actions *").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            $("#Input").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#inline_action *").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
         });
 
         $('.datepicker').pickadate({
@@ -67,9 +113,11 @@
             closeOnSelect: false // Close upon selecting a date,
         });
 
-        document.getElementById("matfix").addEventListener("click", function(e) {
-	    e.stopPropagation();
+        document.getElementById("matfix").addEventListener("click", function (e) {
+            e.stopPropagation();
         });
+
+
     </script>
 
 </body>

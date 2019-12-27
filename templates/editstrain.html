@@ -3,72 +3,96 @@
 
 
     <form action="{{ url_for('update_strain', strain_id=strain._id) }}" method="POST" class="col s12">
-    <!-- <form action="{{ url_for('insert_DB')}}" method="POST" class="col s12"> -->
+        <!-- <form action="{{ url_for('insert_DB')}}" method="POST" class="col s12"> -->
+
         <div class="row">
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">poll</i>
-                    <select class="collapsible"id="strain_type" name="type">                        
-                  <option value="" disabled selected>Choose strain type</option>
-                  {% for strn in type %}
+            <div class="input-field col s12">
+                <i class="material-icons prefix">spa</i>
+                <select class="collapsible-header" id="strain_type" name="type">
+                    <option value="" disabled selected>Choose strain type</option>
+                    {% for strn in type %}
                     {% if strn.type == strain.type %}
-                      <option value="{{strn.type}}" selected >{{strn.type}}</option>
-                    {% else %}  
-                      <option value="{{strn.type}}">{{strn.type}}</option>
-                   {% endif %} 
-                  {% endfor %}
+                    <option value="{{strn.type}}" selected>{{strn.type}}</option>
+                    {% else %}
+                    <option value="{{strn.type}}">{{strn.type}}</option>
+                    {% endif %}
+                    {% endfor %}
                 </select>
-                    <label>Strain type</label>
-                </div>
-            </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">assignment</i>
-                <input id="strain_name" name="name" type="text" class="validate" value="{{strain.name}}">
-                <label for="icon_prefix">Strain Name</label>
+                <label>Strain type</label>
             </div>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">subject</i>
-                <textarea id="strain_description" value="{{strain.description}}" name="description" class="materialize-textarea">{{strain.description}}</textarea>                                                        
-                <label for="icon_telephone">Strain Description</label>
-            </div>
+
+        <div class="input-field col s12">
+            <i class="material-icons prefix">eco</i>
+            <input id="strain_name" name="name" type="text" class="validate" value="{{strain.name}}">
+            <label for="icon_prefix">Strain Name</label>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">today</i>
-                <input id="firstTried" value="{{firstTried}}" name="firstTried" type="text" class="datepicker">
-                <label for="icon_prefix">First found</label>
-            </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">assignment</i>
+            <input id="strain_effects" name="effects" type="text" value="{{strain.effects}}">
+            <label for="icon_prefix">Strain Effects</label>
         </div>
-        <div class="row">
-            <div class="switch">
-                <label>
-                  {% if strain.isDank %}
-                        <input id="isDank" name="isDank" type="checkbox" checked>
-                    {% else %}  
-                        <input id="isDank" name="isDank" type="checkbox">
-                  {% endif %}
-                  <span class="lever"></span>
-                  Is Dank
-                </label>
-            </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">local_pharmacy</i>
+            <input id="strain_medical" name="medical" type="text" value="{{strain.medical}}">
+            <label for="icon_prefix">Possible Medical Remedy</label>
         </div>
-        <div class="row">
-            <button class="btn btn-large waves-effect waves-light red" type="submit" name="action">Edit Strain
-                <i class="material-icons left">eco</i>
-                <i class="material-icons right">send</i>
-              </button>
-        </div>        
-    </form>
+</div>
+<div class="row">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">subject</i>
+        <textarea id="strain_description" value="{{strain.description}}" name="description"
+            class="materialize-textarea">{{strain.description}}</textarea>
+        <label for="icon_telephone">Strain Description</label>
+    </div>
+</div>
+<div class="row">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">today</i>
+        <input id="firstTried" value="{{firstTried}}" name="firstTried" type="text" class="datepicker">
+        <label for="icon_prefix">First found</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="switch">
+        <label>
+            {% if strain.isDank %}
+            <input id="isDank" name="isDank" type="checkbox" checked>
+
+            {% else %}
+            <input id="isDank" name="isDank" type="checkbox">
+            {% endif %}
+            <span class="lever"></span>
+            Is Dank
+        </label>
+    </div>
+</div>
+<div class="row">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">whatshot</i>
+        <textarea id="strain_rankfire" value="{{strain.rankfire}}" name="rankfire"
+            class="materialize-textarea">{{strain.rankfire}}</textarea>
+        <label for="icon_telephone">Strain rankfire</label>
+    </div>
+</div>
+
+
+<div class="row">
+    <button class="btn btn-large waves-effect waves-light red" type="submit" name="action">Edit Strain
+        <i class="material-icons left">eco</i>
+        <i class="material-icons right">send</i>
+    </button>
+</div>
+</form>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         firstTried = Date.parse('{{strain.firstTried}}')
-        $('#firstTried').pickdate('picker').set('select', firstTried, {format: 'dd/mm/yyyy'}).trigger('change')
+        $('#firstTried').pickdate('picker').set('select', firstTried, { format: 'dd/mm/yyyy' }).trigger('change')
     })
 </script>
 
